@@ -15,8 +15,8 @@ Sensors:
 	
 Reference Project URL (crap other people have done and we've borrowed ideas or code)
 
-Operation Arduino Lo-Jack:  http://b.leppoc.net/2011/04/23/operation-lo-jack/
-
+Operation Arduino Lo-Jack:  	http://b.leppoc.net/2011/04/23/operation-lo-jack/
+Console tracker (GSM card) 	http://dsscircuits.com/articles/video-game-console-tracker.html
 
 
 Lo Jack Detection:
@@ -49,3 +49,5 @@ Is the SD card necessary?
 9 mpg  gallons per 100 miles = 11.11
 
      ~5.5 gal every 100 miles.
+     
+  
