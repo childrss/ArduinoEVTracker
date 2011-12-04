@@ -1,0 +1,51 @@
+The Concept
+Many folks ask how the gas mileage is on an electric vehicle.  Figuring out the MPGe (miles-per-gallon equivalent), watt-hours per mile is relatively trivial, but tracking the mileage, watts input is a PITA.  So, why not log all that data with an Arduino, have it uploaded automatically to the web and have a computer do all the mileage tracking and maths.  Lazy drives efficiency!
+
+All code is HIGHLY RAW -- meaning it may, may not work and use at your own risk!
+
+Ever-changing project Hardware List
+Arduino Uno or Mega (Mega to be Safe as has more ports)
+Adafruit GPS Logger (SD Card is probably not necessary)
+   (may not be necessary at all)
+SparkFun WiFi access card
+Liquidware Battery Pack
+Sensors:
+   Current/Voltage sensors
+	Put this on the 220V side, then if it doesn't matter if it's charging at 110V or 220V... all we really care about is the energy
+	
+Reference Project URL (crap other people have done and we've borrowed ideas or code)
+
+Operation Arduino Lo-Jack:  http://b.leppoc.net/2011/04/23/operation-lo-jack/
+
+
+
+Lo Jack Detection:
+Accelerometer - Severity of Bump -- threshold:
+
+	Twike Bumped/Strong Wind
+	Enry attmpted
+	
+Build active/deactivate into parking brake
+
+	ON:	Brake down unless override switch is activated.  Override switch is inconspicouly located near drivers side so you can brush it and turn it off without somebody noticing (backside of roll cage)
+	
+	PREVENTION:  Red Flashing LED on Passenger Side indicates it's armed.  Flashes faster when accellerometer is triggered. Revert after 2-3 seconds.
+
+	Put "safe zones" based on GPS location -- HOME where it doesn't trigger
+	   (Maye we still want it?)
+
+	15? second delay on a movement -- if the brake isn't disengaged in 15? seconds after event, send text.  Proximity detector (aka Toyota Prius Key fob)
+	
+Is the SD card necessary?
+    Generally no.  The Arduino Uno/Mega onboard memory will suffice because:
+    There's WiFi Access at Work/Home/MyCellPhone so the data will upload.
+    If WiFi Access is not available, then we will store and IF it's not
+    	available for a long time we SMS a warning message.
+
+
+
+6 mpg gallons per 100 miles = 16.6
+
+9 mpg  gallons per 100 miles = 11.11
+
+     ~5.5 gal every 100 miles.
