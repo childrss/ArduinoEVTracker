@@ -1,17 +1,25 @@
-/*
- * Web Server
+/* This is a conglomeration of functions that PJMikols found to operate
+ * various Arduino shields connected to his Mega
  *
- * (Based on Ethernet's WebServer Example)
+ *  parseHex - called by GPS to checksum the string from the GPS
+ *  error - blink out an error code for the SD storage card
+ *  sleepsec - called by the GPS function to save battery
  *
- * A simple web server that shows the value of the analog input pins.
- */
 
+//  This is needed to operate the Wireless Card
 #include "WiFly.h"
+
+// Credentials should be modified for YOUR wireless networks
 #include "Credentials.h"
 
 //)))))))))))))))))))))) own code ((((((((((((((((((((((((((
 
+// For the current sensor -- the Arduino can only handle a max of 5v on the
+// analong in.  So the CorrectionVoltage re-inflates it back to standard voltage
+// (ie, ~120v).  Max voltage is assumed to be about 430V -- 400v/5v = 85
 int CorrectionVoltage =	85;
+
+// Analog pin that the sensor wrapped around the
 #define BATTERY		4		// Find the analog pin for the Battery. 
 
 
@@ -198,7 +206,7 @@ uint8_t parseHex(char c) {
 
 
 
-// blink out an error code
+// blink out an error code for the SD storage card
 void error(uint8_t errno) {
 /*
   if (SD.errorCode()) {
@@ -223,6 +231,7 @@ void error(uint8_t errno) {
   }
 }
 
+// Called by GPS function
 
 void sleep_sec(uint8_t x) {
   while (x--) {
@@ -236,6 +245,8 @@ void sleep_sec(uint8_t x) {
     sleep_disable();
   }
 }
+
+/* unknown what this was used for...
 
 SIGNAL(WDT_vect) {
   WDTCSR |= (1 << WDCE) | (1 << WDE);
@@ -844,7 +855,15 @@ void readline(void) {
 //#######################  WIFI  #######################################
 
 
-void WIFI ()
+
+/* The Webserver function displays a website with the values of the analog
+ * input pins to an end user that hits the Arduino 
+ * IP with their browser.  So it's best to set reserved DHCP up on your wireless
+ * network for the Arduino WiFly Shield via the DHCP Client ID or Mac address
+ * 
+ */
+ 
+void WebServer ()
 {
   Client client = server.available();
   if (client) {
